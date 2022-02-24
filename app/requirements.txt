@@ -1,0 +1,35 @@
+fastapi==0.68.1
+requests==2.26.0
+oauthlib==3.1.1
+aiocache==0.11.1
+asyncpg==0.24.0
+SQLAlchemy==1.4.3
+aiosqlite==0.17.0
+psycopg2==2.9.1
+overrides==6.1.0
+msal==1.14.0
+uvicorn==0.15.0
+passlib==1.7.4
+motor==2.5.1
+psycopg2==2.9.1
+dependency-injector==4.36.0
+pytest==6.2.5
+pytest-cov==2.12.1
+PyYAML==5.4.1
+bcrypt==3.2.0
+fastapi-chameleon
+aiosqlite3==0.3.0
+python-multipart==0.0.5
+progressbar2==3.53.3
+python-dateutil==2.8.2
+python-jose==3.3.0
+starlette
+nest-asyncio
+
+# SQLAlchemy started enforcing the underlying Python DB API was truly async
+# We don't really get that with SQLite but when you switch something like Postgres
+# It would "light up" with async. Since recording, SQLAlchemy throws and error
+# if this would be the case. We need to explicitly switch to aiosqlite.
+aiofiles==0.7.0
+
+git+https://github.com/ageekinside/fastapi-jinja

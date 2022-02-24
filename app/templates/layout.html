@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+{# head #}
+{% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Python Package Index (demo)</title>
+
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic|Source+Code+Pro:500">
+
+        <link rel="stylesheet" href="/static/external/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="/static/css/site.css"/>
+        <link rel="stylesheet" href="/static/css/nav.css"/>
+
+        {% block custom_css %} {% endblock custom_css %}
+
+    </head>
+{% endblock head %}
+
+
+{# body #}
+{% block body %}
+    <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse navbar-expand-md">
+        <a class="navbar-brand" href="/"><img src="/static/img/pypi-logo.svg"/></a>
+
+        <button class="navbar-toggler navbar-toggle" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="navbar-toggler-icon">
+                <div class="nav-expand-line"></div>
+                <div class="nav-expand-line"></div>
+                <div class="nav-expand-line"></div>
+            </div>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Donate</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                {% if not is_logged_in %}
+                    <li class="nav-item"><a class="nav-link" href="/account/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/account/register"
+                                            id="last_nav_link">Register</a></li>
+                {% endif %}
+
+                {% if is_logged_in %}
+                    <li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/account/logout"
+                                            id="last_nav_link">Logout</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
+
+    <div style="background-color: white">
+        {# empty block for custom content #}
+        {% block content %} {% endblock content %}
+    </div>
+
+
+    {# footer #}
+    {% block footer %}
+        <footer>
+            <div class="copyright">
+                This is a fake site built during a course.<br>
+                It's meant to model / simulate the real <a href="https://pypi.org">pypi.org</a><br>
+                <br>
+                Copyright &copy; <a href="https://www.youtube.com/channel/UCOHAUH0L6IbalGd-iGHHdmQ?sub_confirmation=1">KWAG</a>.
+            </div>
+        </footer>
+    {% endblock footer %}
+
+    <script src="/static/external/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/static/external/js/popper.min.js"></script>
+    <script src="/static/external/js/bootstrap.min.js"></script>
+
+    </body>
+{% endblock body %}
+
+</html>

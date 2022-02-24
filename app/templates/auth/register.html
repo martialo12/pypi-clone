@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block custom_css %}
+{#    <link rel="stylesheet" href="/static/css/account.css">#}
+{% endblock custom_css %}
+
+{% block content %}
+
+    <section class="container " style="padding-bottom: 100px;">
+        <form action="" method="POST" class="log-form" style="padding-top: 50px;">
+            <hgroup>
+                <h2>Create an account on PyPI</h2>
+            </hgroup>
+            <div class="group log-input">
+                <label><strong>Name</strong></label>
+                <br/>
+                <input name="name" type="text" placeholder=" Your name"  value="{{ name }}"required>
+            </div>
+            <br/>
+
+            <div class="group log-input">
+                <label><strong>Email address</strong><span style="font-size: xx-small">(required)</span></label>
+                <br/>
+                <input name="email" type="email" placeholder=" Your email address" value="{{ email }}" required>
+            </div>
+            <br/>
+
+            <div class="group log-input">
+                <label><strong>Password</strong><span style="font-size: xx-small">(required)</span></label>
+                <br/>
+                <input name="password" type="password" placeholder=" Password"
+                       value="{{ password }}" required/>
+            </div>
+            <br/>
+
+            <div class="container-log-btn">
+                <button type="submit" name="btn_submit" class="log-form-btn btn btn-primary">
+                    <span>Create account</span>
+                </button>
+            </div>
+
+            <div style="clear: both;"></div>
+            {% if error %}
+                <div class="error-msg">{{ error }}</div>
+            {% endif %}
+        </form>
+    </section>
+
+{% endblock content %}

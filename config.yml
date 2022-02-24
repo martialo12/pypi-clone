@@ -1,0 +1,17 @@
+db:
+  postgresql:
+    url: "postgresql+asyncpg://postgres:postgres@localhost:5432/testdb"
+  mysql:
+    url: ""
+  oraccle:
+    url: ""
+  sqlite:
+    url: "sqlite+aiosqlite:///./test.db"
+
+
+services:
+  app:
+    environment:
+      SQLITE_URL: "sqlite+aiosqlite:///./test.db"
+      POSTGRESQL_DATABASE_URL: "postgresql+asyncpg://postgres:password@postgres:5432/testdb"
+

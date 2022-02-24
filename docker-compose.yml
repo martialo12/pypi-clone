@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+
+  sqlite3:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/app/db/
+
+  postgres:
+    hostname: posgresql
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - '5432:5432'
+    networks:
+      - stack
+
+  app:
+    build:
+      context: ./
+    volumes:
+      - .//:/app/:cached  # Mount code to allow for hot reloading
+      - ./.docker/.ipython:/root/.ipython:cached
+      - ./db/:/app/db/test.db # Here is the change
+    environment:
+      POSTGRESQL_DATABASE_URL: "postgresql+asyncpg://postgres:password@postgres:5432/testdb"
+      SQLITE_URL: "sqlite+aiosqlite:///app/db/test.db"
+      PROJECT_NAME: "pypi_clone"
+      AUTH_COOKIE_NAME: "pypi_account"
+    ports:
+      - "5000:5000"
+    networks:
+      - stack
+
+networks:
+  stack: {}
